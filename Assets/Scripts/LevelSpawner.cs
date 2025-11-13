@@ -9,9 +9,19 @@ public class LevelSpavner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for (int i = 1; i < _levelsCount; i++)
+        for (int i = 1; i <= _levelsCount; i++)
         {
-            Instantiate(_prefab, _spawnPosition);
+            int rnd = Random.Range(0, 3);
+            bool isLocked = false;
+
+            //isLocked = i >= _levelLock;
+
+            if(i >= _levelLock)
+            {
+                isLocked = true;
+            }
+
+            Instantiate(_prefab, _spawnPosition).Init(i,rnd,isLocked);
         }
     }
 
